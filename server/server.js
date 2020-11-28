@@ -90,6 +90,15 @@ app.put('/api/v1/restaurants/:id', async (req, res) => {
         req.params.id
       ]
       );
+
+    res
+      .status(200)
+      .json({
+        status: 'success',
+        data: {
+          restaurants: results.rows[0],
+        }
+      })
   } catch (error) {
     
   }
