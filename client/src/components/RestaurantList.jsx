@@ -1,6 +1,23 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
+import RestaurantApi from '../apis/RestaurantApi'
+import { RestaurantsContext } from '../context/RestaurantsContext';
 
 const RestaurantList = () => {
+  const {restaurants, setRestaurants} = useContext(RestaurantsContext);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await RestaurantApi.get('/');
+        setRestaurants(response.data.data.restaurants);
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+    fetchData();
+  }, [])
+
   return (
     <div className="list-group">
       <table className="table table-hover table-dark">
@@ -15,14 +32,19 @@ const RestaurantList = () => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>mcdonalds</td>
-            <td>montreal</td>
-            <td>$</td>
-            <td>Rating</td>
-            <td><button className="btn btn-warning">Update</button></td>
-            <td><button className="btn btn-danger">Delete</button></td>
-          </tr>
+          {restaurants && 
+            restaurants.map(restaurant => {
+              return (
+                <tr key={restaurant.id}>
+                  <td>{restaurant.name}</td>
+                  <td>{restaurant.location}</td>
+                  <td>{'$'.repeat(restaurant.price_range)}</td>
+                  <td>Review</td>
+                  <td><button className="btn btn-warning">Update</button></td>
+                  <td><button className="btn btn-danger">Delete</button></td>
+                </tr>
+              )
+          })}
         </tbody>
       </table>
     </div>
