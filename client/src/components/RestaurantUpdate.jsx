@@ -24,7 +24,7 @@ const RestaurantUpdate = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const updatedRestaurant = await RestaurantApi.put(`/${id}`, {
+    await RestaurantApi.put(`/${id}`, {
       name,
       location,
       price_range: priceRange,
