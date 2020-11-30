@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { RestaurantsContextProvider } from './context/RestaurantsContext';
-import Home from './routes/Home';
-import RestaurantDetail from './routes/RestaurantDetail';
-import RestaurantUpdate from './routes/RestaurantUpdate';
+import HomePage from './routes/HomePage';
+import RestaurantDetailPage from './routes/RestaurantDetailPage';
+import RestaurantUpdatePage from './routes/RestaurantUpdatePage';
 
 const App = () => {
   return (
@@ -11,13 +11,13 @@ const App = () => {
       <div className='container'>
         <Router>
           <Switch>
-            <Route exact path='/' component={Home} />
+            <Route exact path='/' component={HomePage} />
             <Route
               exact
               path='/restaurants/:id/update'
-              component={RestaurantUpdate}
+              component={RestaurantUpdatePage}
             />
-            <Route exact path='/restaurants/:id' component={RestaurantDetail} />
+            <Route exact path='/restaurants/:id' component={RestaurantDetailPage} />
           </Switch>
         </Router>
       </div>

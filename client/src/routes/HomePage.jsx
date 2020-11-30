@@ -3,7 +3,7 @@ import Header from '../components/Header'
 import RestaurantAdd from '../components/RestaurantAdd'
 import RestaurantList from '../components/RestaurantList'
 
-const Home = () => {
+const HomePage = () => {
   return (
     <div>
       <Header />
@@ -13,4 +13,4 @@ const Home = () => {
   )
 }
 
-export default Home;
+export default HomePage;
