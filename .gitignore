@@ -2,3 +2,4 @@
 .idea/
 prisma/migrations
 **/node_modules
+.eslintcache
