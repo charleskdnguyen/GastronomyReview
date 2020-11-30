@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useHistory, useLocation, useParams } from 'react-router-dom';
 import RestaurantApi from '../apis/RestaurantApi';
 
 const AddReview = () => {
@@ -8,16 +8,23 @@ const AddReview = () => {
   const [rating, setRating] = useState('Rating');
   const [review, setReview] = useState('');
 
-  const handleSubmitReview = async (e) => {
+  const location = useLocation();
+  const history = useHistory();
+
+  const handleSubmitReview = async e => {
     e.preventDefault();
 
-    const response = await RestaurantApi.post(`/${id}/addReview`, {
-      name,
-      review,
-      rating,
-    })
-
-    console.log(response);
+    try {
+      await RestaurantApi.post(`/${id}/addReview`, {
+        name,
+        review,
+        rating,
+      });
+      history.push('/')
+      history.push(location.pathname);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
