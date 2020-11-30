@@ -4,6 +4,7 @@ import { RestaurantsContext } from '../context/RestaurantsContext';
 import RestaurantApi from '../apis/RestaurantApi';
 import StarRating from '../components/StarRating';
 import Reviews from '../components/Reviews';
+import AddReview from '../components/AddReview';
 
 const RestaurantDetailPage = () => {
   const { id } = useParams();
@@ -15,7 +16,8 @@ const RestaurantDetailPage = () => {
     const fetchData = async () => {
       try {
         const response = await RestaurantApi.get(`/${id}`);
-        setSelectedRestaurant(response.data.data.restaurant);
+
+        setSelectedRestaurant(response.data.data);
       } catch (error) {
         console.log(error);
       }
@@ -25,14 +27,23 @@ const RestaurantDetailPage = () => {
 
   return (
     <div>
-      <h1 className="font-weight-light display-1 text-center">{selectedRestaurant && selectedRestaurant.name}</h1>
-      <div>{selectedRestaurant && (
+      {selectedRestaurant && (
         <>
-        <div className="mt-3">
-          <Reviews />
-        </div>
+          <h1 className='font-weight-light display-1 text-center'>
+            {selectedRestaurant.restaurant.name}
+          </h1>
+          <div>
+            {selectedRestaurant && (
+              <>
+                <div className='mt-3'>
+                  <Reviews reviews={selectedRestaurant.reviews} />
+                </div>
+                <AddReview />
+              </>
+            )}
+          </div>
         </>
-      )}</div>
+      )}
     </div>
   );
 };

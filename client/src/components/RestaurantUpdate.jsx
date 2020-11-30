@@ -13,24 +13,24 @@ const RestaurantUpdate = () => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await RestaurantApi.get(`/${id}`);
-      
-      setName(response.data.data.restaurant.name)
-      setLocation(response.data.data.restaurant.location)
-      setPriceRange(response.data.data.restaurant.price_range)
+
+      setName(response.data.data.restaurant.name);
+      setLocation(response.data.data.restaurant.location);
+      setPriceRange(response.data.data.restaurant.price_range);
     };
 
     fetchData();
   }, []);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async e => {
     e.preventDefault();
     await RestaurantApi.put(`/${id}`, {
       name,
       location,
       price_range: priceRange,
-    })
-    history.push('/')
-  }
+    });
+    history.push('/');
+  };
 
   return (
     <div>
@@ -65,7 +65,13 @@ const RestaurantUpdate = () => {
             onChange={e => setPriceRange(e.target.value)}
           />
         </div>
-        <button type="submit" className='btn btn-primary' onClick={handleSubmit}>Submit</button>
+        <button
+          type='submit'
+          className='btn btn-primary'
+          onClick={handleSubmit}
+        >
+          Submit
+        </button>
       </form>
     </div>
   );

@@ -34,8 +34,7 @@ const RestaurantList = () => {
     e.stopPropagation();
     try {
       RestaurantApi.delete(`/${id}`);
-      setRestaurants(restaurants
-        .filter(restaurant => restaurant.id !== id));
+      setRestaurants(restaurants.filter(restaurant => restaurant.id !== id));
     } catch (error) {
       console.log(error);
     }
@@ -73,7 +72,7 @@ const RestaurantList = () => {
                   <td>
                     <button
                       className='btn btn-warning'
-                      onClick={(e) => handleUpdate(e, restaurant.id)}
+                      onClick={e => handleUpdate(e, restaurant.id)}
                     >
                       Update
                     </button>
@@ -81,7 +80,7 @@ const RestaurantList = () => {
                   <td>
                     <button
                       className='btn btn-danger'
-                      onClick={(e) => handleDelete(e, restaurant.id)}
+                      onClick={e => handleDelete(e, restaurant.id)}
                     >
                       Delete
                     </button>
