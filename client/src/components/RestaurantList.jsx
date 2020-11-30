@@ -16,7 +16,16 @@ const RestaurantList = () => {
     }
 
     fetchData();
-  }, [])
+  }, []);
+
+  const handleDelete = async id => {
+    try {
+      RestaurantApi.delete(`/${id}`)
+      setRestaurants(restaurants.filter(restaurant => restaurant.id !== id))
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <div className="list-group">
@@ -41,7 +50,7 @@ const RestaurantList = () => {
                   <td>{'$'.repeat(restaurant.price_range)}</td>
                   <td>Review</td>
                   <td><button className="btn btn-warning">Update</button></td>
-                  <td><button className="btn btn-danger">Delete</button></td>
+                  <td><button className="btn btn-danger" onClick={() => handleDelete(restaurant.id)}>Delete</button></td>
                 </tr>
               )
           })}
