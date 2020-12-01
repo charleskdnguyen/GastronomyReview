@@ -2,8 +2,9 @@ import React, { useContext, useEffect } from 'react';
 import RestaurantApi from '../apis/RestaurantApi';
 import { RestaurantsContext } from '../context/RestaurantsContext';
 import { useHistory } from 'react-router-dom';
+import StarRating from '../components/StarRating'
 
-const RestaurantList = () => {
+const RestaurantListPage = () => {
   const { restaurants, setRestaurants } = useContext(RestaurantsContext);
 
   let history = useHistory();
@@ -44,6 +45,15 @@ const RestaurantList = () => {
     history.push(`/restaurants/${id}`);
   };
 
+  const renderRating = restaurant => {
+    return (
+      <>
+        <StarRating rating={restaurant.average_rating} />
+        <span className="text-warning ml-1">({restaurant.count || 0})</span>
+      </>
+    )
+  }
+
   return (
     <div className='list-group'>
       <table className='table table-hover table-dark'>
@@ -68,7 +78,7 @@ const RestaurantList = () => {
                   <td>{restaurant.name}</td>
                   <td>{restaurant.location}</td>
                   <td>{'$'.repeat(restaurant.price_range)}</td>
-                  <td>Review</td>
+                  <td>{renderRating(restaurant)}</td>
                   <td>
                     <button
                       className='btn btn-warning'
@@ -94,4 +104,4 @@ const RestaurantList = () => {
   );
 };
 
-export default RestaurantList;
+export default RestaurantListPage;

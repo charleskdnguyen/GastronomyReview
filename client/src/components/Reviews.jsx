@@ -3,7 +3,7 @@ import StarRating from './StarRating';
 
 const Reviews = ({ reviews }) => {
   return (
-    <div className='row row-cols-3 mb-2'>
+    <div className='row row-cols-3 mb-2 ml-4'>
       {reviews.map(review => {
         return (
           <div

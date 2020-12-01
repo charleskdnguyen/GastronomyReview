@@ -32,6 +32,10 @@ const RestaurantDetailPage = () => {
           <h1 className='font-weight-light display-1 text-center'>
             {selectedRestaurant.restaurant.name}
           </h1>
+          <div className="text-center display-4">
+            <StarRating rating={selectedRestaurant.restaurant.average_rating} />
+            <span className="text-warning ml-1">({selectedRestaurant.restaurant.count || 0})</span>
+          </div>
           <div>
             {selectedRestaurant && (
               <>

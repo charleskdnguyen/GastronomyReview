@@ -1,14 +1,14 @@
 import React from 'react'
 import Header from '../components/Header'
 import RestaurantAdd from '../components/RestaurantAdd'
-import RestaurantList from '../components/RestaurantList'
+import RestaurantListPage from './RestaurantListPage'
 
 const HomePage = () => {
   return (
     <div>
       <Header />
       <RestaurantAdd />
-      <RestaurantList />
+      <RestaurantListPage />
     </div>
   )
 }
